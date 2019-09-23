@@ -248,6 +248,22 @@ open class AcknowListViewController: UITableViewController {
         }
     }
 
+    /// Called when the view will layout subviews.
+    /// This could be when added to a superview, or on a size class change.
+    open override func viewWillLayoutSubviews() {
+        if let headerText = self.headerText {
+            // Adjust the header text height so that the label will wrap to fit the width of the new view.
+            let labelWidth = self.view.frame.width - 2 * AcknowListViewController.LabelMargin()
+            let labelHeight = self.heightForLabel(text: headerText as NSString, width: labelWidth)
+            let headerFrame = CGRect(
+                x: 0, y: 0,
+                width: self.view.frame.width,
+                height: labelHeight + 2 * AcknowListViewController.LabelMargin())
+            self.tableView.tableHeaderView?.frame = headerFrame
+        }
+        super.viewWillLayoutSubviews()
+    }
+
     /**
      Notifies the view controller that its view is about to be added to a view hierarchy.
 
@@ -334,7 +350,7 @@ open class AcknowListViewController: UITableViewController {
             label.backgroundColor = UIColor.clear
             label.numberOfLines = 0
             label.textAlignment = .center
-            label.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
+            label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             if #available(iOS 10.0, tvOS 10.0, *) {
                 label.adjustsFontForContentSizeCategory = true
             }
