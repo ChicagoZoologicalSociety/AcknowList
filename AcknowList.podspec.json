@@ -12,8 +12,8 @@
   },
   "social_media_url": "http://twitter.com/vtourraine",
   "source": {
-    "git": "https://github.com/vtourraine/AcknowList.git",
-    "tag": "1.9"
+    "git": "https://github.com/ChicagoZoologicalSociety/AcknowList.git",
+    "tag": "1.9+czs.1"
   },
   "source_files": "Source/*.swift",
   "resources": "Resources/AcknowList.bundle",
